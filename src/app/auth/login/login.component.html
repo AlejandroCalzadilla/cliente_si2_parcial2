@@ -20,7 +20,72 @@
   <body class="h-full">
   ```
 -->
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+
+
+
+<div class="font-sans">
+  <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-900 ">
+    <div class="relative sm:max-w-sm w-full">
+      <div class="card bg-indigo-600 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+      <div class="card bg-custom-bluep shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+      <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+        <label for="" class="block mt-3 text-sm text-gray-700 text-center font-semibold">
+          Login
+        </label>
+
+
+        <form [formGroup]="loginForm" action="#" class="mt-10">
+          <p class="text-red-600"> {{logierror}} </p>
+          <div>
+            
+            <input type="text" formControlName="username" placeholder="Codigo"
+              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+              required="abssdjbshd">
+
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="">
+              <div *ngIf="username.errors?.['required']" class="text-red-600">Codigo es requerido.</div>
+              <div *ngIf="username.errors?.['text']">
+                Codigo debe tener un formato valido.
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-7">
+            <input type="password" formControlName="password" placeholder="Contraseña"
+              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+              required="dasdasd">
+          </div>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="">
+            <div *ngIf="password.errors?.['required']" class="text-red-600">La contraseña es requerida.</div>
+           
+          </div>
+
+
+          <div class="mt-7">
+            <button type="submit" (click)="Login()"
+              class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+              Login
+            </button>
+          </div>
+
+
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
@@ -57,5 +122,4 @@
         <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
       </p>
     </div>
-  </div>
-  
+  </div> -->

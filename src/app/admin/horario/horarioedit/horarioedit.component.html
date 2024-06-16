@@ -1,0 +1,77 @@
+
+<app-navbar></app-navbar>
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto my-24 max-w-2xl lg:py-5">
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar Horario</h2>
+        <form [formGroup]="CreateForm"  action="#">
+            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              
+                <!-- fila entera  entera  --> 
+                <div class="sm:col-span-2">
+                    <label for="dia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DIA</label>
+                    <select formControlName="dia" name="dias" id="dias" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option class="hover:bg-black" value="" disabled selected>Seleccione el  día</option>
+                        <option value="Lunes">LUNES</option>
+                        <option value="MARTES">MARTES</option>
+                        <option value="MIERCOLES">MIERCOLES</option>
+                        <option value="JUEVES">JUEVES</option>
+                        <option value="VIERNES">VIERNES</option>
+                        <option value="SABADO">SABADO</option>
+                        </select>
+                     <div *ngIf="dia.invalid && (dia.dirty || dia.touched)" class="text-red-600">
+                        <div *ngIf="dia.errors?.['required']">el campo dia es requerido</div>
+                    </div> 
+                </div>
+                  
+
+                <div class="sm:col-span-2">
+                    <label for="aula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aula</label>
+                    <select formControlName="aula" name="aula" id="aula" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option class="hover:bg-black" value="aula" disabled selected>Seleccione el aula </option>
+                        <option *ngFor="let aula of aulas" [value]="aula.id">AULA: {{ aula.numero }} DEL MODULO:{{aula.modulo.numero}}</option>
+                    </select>
+                    <div *ngIf="aula.invalid && (aula.dirty || aula.touched)" class="text-red-600">
+                        <div *ngIf="aula.errors?.['required']">el aula es requerida</div>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="grupo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grupo</label>
+                    <select formControlName="grupo" name="grupo" id="grupo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option class="hover:bg-black" value="" disabled selected>Seleccione el grupo</option>
+                        <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.nombre }}</option>
+                    </select>
+                    <div *ngIf="grupo.invalid && (grupo.dirty || grupo.touched)" class="text-red-600">
+                        <div *ngIf="grupo.errors?.['required']">la materia es requerida</div>
+                    </div>
+                </div>
+
+               
+                <!-- estos ocupan una clomnua entre dos ya es una fila  -->
+                <div class="w-full">
+                    <label for="hora" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Inicio</label>
+                    <input formControlName="horaInicio" type="time" name="hora" id="hora" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Seleccione la hora" required>
+                    <div *ngIf="horaInicio.invalid && (horaInicio.dirty || horaInicio.touched)" class="text-red-600">
+                        <div *ngIf="horaInicio.errors?.['required']">La hora de incio es requerida</div>    
+                    </div>
+                </div>
+                
+
+                <div class="w-full">
+                    <label for="hora" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fin</label>
+                    <input formControlName="horaFin" type="time" name="hora" id="hora" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Seleccione la hora" required>
+                    <div *ngIf="horaFin.invalid && (horaFin.dirty || horaFin.touched)" class="text-red-600">
+                        <div *ngIf="horaFin.errors?.['required']">La hora Fin es requerida</div>    
+                    </div>
+                </div>
+
+          
+
+                  
+            </div>
+            <button (click)="edit()" type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                Editar 
+            </button>
+        </form>
+    </div>
+  </section>

@@ -1,1 +1,129 @@
-<p>docente-create works!</p>
+<app-navbar></app-navbar>
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-2xl lg:py-5">
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Añadir a un nuevo docente</h2>
+        <form [formGroup]="docenteCreateForm"  action="#">
+            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              
+                <!-- fila entera  entera  --> 
+                <div class="sm:col-span-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del docente</label>
+                    <input formControlName="nombre" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nombre completo" required="">
+                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="">
+                        <div *ngIf="nombre.errors?.['required']" class="text-red-600">nombre es requerido</div>
+                        <div *ngIf="nombre.errors?.['text']">
+                          Codigo debe tener un formato valido.
+                        </div> 
+                    </div>   
+                    
+                </div>
+               
+                <!-- estos ocupan una clomnua entre dos ya es una fila  -->
+                <div class="w-full">
+                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+                    <input formControlName="telefono" type="number" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Telefono del docente" required="">
+                    <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="">
+                        <div *ngIf="telefono.errors?.['required']" class="text-red-600">telefono es requerido</div>
+                         
+                    </div>   
+                </div>
+              
+                <div class="w-full">
+                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Codigo</label>
+                    <input formControlName="username" type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="21912485" required="">
+                    
+                    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="">
+                        <div *ngIf="username.errors?.['required']" class="text-red-600">codigo es requerido</div>
+                         
+                    </div>
+                      
+                </div>
+     
+                <div class="w-full">
+                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                    <input formControlName="password" type="password" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="******" required="">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="">
+                        <div *ngIf="password.errors?.['required']" class="text-red-600">la contraseña es requerida</div>
+                         
+                    </div>
+                </div>
+                
+                
+               
+                <div class="sm:col-span-2">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion</label>
+                    <textarea formControlName="direccion" id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
+                    <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)" class="">
+                        <div *ngIf="direccion.errors?.['required']" class="text-red-600">la direccion es requerida</div>
+                         
+                    </div>
+                </div>
+            </div>
+            <button (click)="create()" type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                Añadir Docente
+            </button>
+        </form>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section class="dark:bg-gray-900 h-full py-10  ">
+    <div class="px-1 mx-auto relative sm:max-w-2xl w-full mt-5">
+        <div class="card bg-indigo-600 shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
+        <div class="card bg-gray-500 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div>
+        <div class="relative w-full max-w-6xl rounded-3xl px-6 py-4 bg-white shadow-md">
+            <form action="#" class=" rounded-xl p-10">
+                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-black">Crear Nuevo Docente</h2>
+                    <div class="sm:col-span-2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nombre Del Docente</label>
+                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-500 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Miguel" required>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Direccion</label>
+                        <input type="text" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-500 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Av.Grigota nro-302" required>
+                    </div>
+                    <div class="w-full">
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Telefono</label>
+                        <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-500 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="89875574" required>
+                    </div>
+                    
+                </div>
+                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-indigo-600 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                   Crear
+                </button>
+            </form>
+        </div>
+    </div>
+    
+  </section> -->
+
+  
