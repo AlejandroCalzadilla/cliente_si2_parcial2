@@ -1,1 +1,65 @@
-<p>grupoedit works!</p>
+
+<app-navbar></app-navbar>
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto my-24 max-w-2xl lg:py-5">
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar el Grupo</h2>
+        <form [formGroup]="CreateForm"  action="#">
+            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              
+                <!-- fila entera  entera  --> 
+                <div class="w-full">
+                    <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE</label>
+                    <input formControlName="nombre" type="text" name="hora" id="hora" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="SC" required>
+                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-red-600">
+                        <div *ngIf="nombre.errors?.['required']">La hora de incio es requerida</div>    
+                    </div>
+                </div>
+                  
+
+                <div class="sm:col-span-2">
+                    <label for="docente" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Docente</label>
+                    <select formControlName="docente" name="docentes" id="docentes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option class="hover:bg-black" value="" disabled selected>Seleccione el docente </option>
+                        <option *ngFor="let docente of docentes" [value]="docente.idProfesor">{{ docente.nombre }} </option>
+                    </select>
+                    <div *ngIf="docente.invalid && (docente.dirty || docente.touched)" class="text-red-600">
+                        <div *ngIf="docente.errors?.['required']">el docente es requerido</div>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="numero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Materia</label>
+                    <select formControlName="materia" name="dias" id="dias" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option class="hover:bg-black" value="" disabled selected>Seleccione la materia</option>
+                        <option *ngFor="let materia of materias" [value]="materia.id">{{ materia.nombre }}</option>
+                    </select>
+                    <div *ngIf="materia.invalid && (materia.dirty || materia.touched)" class="text-red-600">
+                        <div *ngIf="materia.errors?.['required']">la materia es requerida</div>
+                    </div>
+                </div>
+                 
+
+                <div class="sm:col-span-2">
+                    <label for="numero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carrera</label>
+                    <select formControlName="carrera" name="dias" id="dias" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option class="hover:bg-black" value="" disabled selected>Seleccione la carrera</option>
+                        <option *ngFor="let carrera of carreras" [value]="carrera.id">{{ carrera.nombre }}</option>
+                    </select>
+                    <div *ngIf="materia.invalid && (materia.dirty || materia.touched)" class="text-red-600">
+                        <div *ngIf="materia.errors?.['required']">la carrera es requerida</div>
+                    </div>
+                </div>
+               
+                <!-- estos ocupan una clomnua entre dos ya es una fila  -->
+               
+
+          
+
+                  
+            </div>
+            <button (click)="edit()" type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                Añadir 
+            </button>
+        </form>
+    </div>
+  </section>

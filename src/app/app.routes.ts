@@ -29,56 +29,41 @@ import { HorariocreateComponent } from './admin/horario/horariocreate/horariocre
 import { GrupoindexComponent } from './admin/grupo/grupoindex/grupoindex.component';
 import { GrupocreateComponent } from './admin/grupo/grupocreate/grupocreate.component';
 import { HorarioeditComponent } from './admin/horario/horarioedit/horarioedit.component';
+import { authGuard } from './guards/auth.guard';
+import { GrupoeditComponent } from './admin/grupo/grupoedit/grupoedit.component';
 
 export const routes: Routes = [
 
     { path:'', component:LoginComponent}, 
     //{ path:'user', component:UsersComponent},
     //{path: 'login',component:LoginComponent},
-    {path: 'dashboard',component:PrincipalComponent},
+    
+    {path: 'dashboard',component:PrincipalComponent,canActivate:[authGuard]},
     {path: 'register',component:RegisterComponent},
-
-    {path: 'facultad/index',component:FacultadIndexComponent},
-    {path: 'facultad/show/:id',component:FacultadShowComponent},
-    {path: 'facultad/create',component:FacultadCreateComponent},
-    {path: 'facultad/edit/:id',component:FacultadEditComponent},
-    
-    
-
-    {path: 'docente/index',component:DocenteIndexComponent},
-    {path: 'docente/create',component:DocenteCreateComponent},
-    {path: 'docente/edit/:id',component:DocenteEditComponent},
-    {path: 'docente/show/:id',component:DocenteShowComponent},
-    
-
-
-   // {path: 'carrera/index',component:CarreraindexComponent},
-    {path: 'carrera/create',component:CarreracreateComponent},
-    {path: 'carrera/edit/:id',component:CarreraeditComponent},
-
-    {path: 'modulo/index',component:ModuloindexComponent},
-    {path: 'modulo/create',component:ModulocreateComponent},
-    {path: 'modulo/edit/:id',component:ModuloeditComponent},
-
-    
-    {path: 'materia/index',component:MateriaindexComponent},
-    {path: 'materia/create',component:MateriacreateComponent},
-    {path: 'materia/edit/:id',component:MateriaeditComponent},
-
-    //{path: 'aula/index',component:AulaindexComponent},
-    {path: 'aula/create',component:AulacreateComponent},
-    {path: 'aula/edit/:id',component:AulaeditComponent},
-
-     
-
-    {path: 'horario/index',component:HorarioindexComponent},
-    {path: 'horario/create',component:HorariocreateComponent},
-    {path: 'horario/edit/:id',component:HorarioeditComponent},
-
-   {path: 'grupo/index',component:GrupoindexComponent},
-   {path: 'grupo/create',component:GrupocreateComponent},
-
-    
-    {path: 'errorpage',component:ErrorpageComponent},
+    {path: 'facultad/index',component:FacultadIndexComponent,canActivate:[authGuard]   },
+    {path: 'facultad/show/:id',component:FacultadShowComponent,canActivate:[authGuard]  },
+    {path: 'facultad/create',component:FacultadCreateComponent ,canActivate:[authGuard] },
+    {path: 'facultad/edit/:id',component:FacultadEditComponent ,canActivate:[authGuard] },
+    {path: 'docente/index',component:DocenteIndexComponent  ,canActivate:[authGuard]     },
+    {path: 'docente/create',component:DocenteCreateComponent  ,canActivate:[authGuard]   },
+    {path: 'docente/edit/:id',component:DocenteEditComponent ,canActivate:[authGuard]    },
+    {path: 'docente/show/:id',component:DocenteShowComponent ,canActivate:[authGuard]    },
+    {path: 'carrera/create',component:CarreracreateComponent  ,canActivate:[authGuard]   },
+    {path: 'carrera/edit/:id',component:CarreraeditComponent  ,canActivate:[authGuard]   },
+    {path: 'modulo/index',component:ModuloindexComponent      ,canActivate:[authGuard]   },
+    {path: 'modulo/create',component:ModulocreateComponent    ,canActivate:[authGuard]   },
+    {path: 'modulo/edit/:id',component:ModuloeditComponent    ,canActivate:[authGuard]   },
+    {path: 'materia/index',component:MateriaindexComponent    ,canActivate:[authGuard]   },
+    {path: 'materia/create',component:MateriacreateComponent  ,canActivate:[authGuard]  },
+    {path: 'materia/edit/:id',component:MateriaeditComponent  ,canActivate:[authGuard]  },
+    {path: 'aula/create',component:AulacreateComponent        ,canActivate:[authGuard]  },
+    {path: 'aula/edit/:id',component:AulaeditComponent        ,canActivate:[authGuard]  },
+    {path: 'horario/index',component:HorarioindexComponent    ,canActivate:[authGuard]      },
+    {path: 'horario/create',component:HorariocreateComponent  ,canActivate:[authGuard]      },
+    {path: 'horario/edit/:id',component:HorarioeditComponent  ,canActivate:[authGuard]      }  ,
+    {path: 'grupo/index',component:GrupoindexComponent        ,canActivate:[authGuard]  },
+    {path: 'grupo/create',component:GrupocreateComponent      ,canActivate:[authGuard]      },
+    {path: 'grupo/edit/:id',component:GrupoeditComponent      ,canActivate:[authGuard]      },   
+    {path: 'errorpage',component:ErrorpageComponent           ,canActivate:[authGuard]  },
 
 ];

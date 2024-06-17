@@ -1,1 +1,59 @@
-<p>aulaesit works!</p>
+
+<app-navbar></app-navbar>
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto my-32 max-w-2xl lg:py-5">
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Añadir una nueva Aula</h2>
+        <form [formGroup]="CreateForm"  action="#">
+            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              
+                <!-- fila entera  entera  --> 
+                <div class="sm:col-span-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Numero del aula</label>
+                    <input formControlName="numero" type="number" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="numero del aula" required="">
+                    <div *ngIf="numero.invalid && (numero.dirty || numero.touched)" class="">
+                        <div *ngIf="numero.errors?.['required']" class="text-red-600">el numero requerido</div>
+                        
+                    </div>   
+                    
+                </div>
+               
+                <!-- estos ocupan una clomnua entre dos ya es una fila  -->
+                <div class="w-full">
+                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tipo</label>
+                    <input formControlName="tipo" type="text" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="tipo de aula" required="">
+                    <div *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)" class="">
+                      <div *ngIf="tipo.errors?.['required']" class="text-red-600">el tipo  es requerido</div>    
+                    </div>   
+                </div>
+                 
+                <div class="w-full">
+                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">capacidad</label>
+                    <input formControlName="capacidad" type="number" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="capacidad del aula" required="">
+                    <div *ngIf="capacidad.invalid && (capacidad.dirty || capacidad.touched)" class="">
+                      <div *ngIf="capacidad.errors?.['required']" class="text-red-600">la capacidad es requerida</div>    
+                    </div>   
+                </div>
+ 
+                  
+                  
+            </div>
+            <button (click)="edit()" type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                Añadir 
+            </button>
+        </form>
+    </div>
+  </section>
+
+
+
+
+ 
+   
+
+
+
+
+
+
+
+

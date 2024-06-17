@@ -112,7 +112,7 @@ export class GrupocreateComponent {
              this.modulos=userdata
           },
         }) 
-        //this.router.navigateByUrl('/facultad/index')
+        this.router.navigateByUrl('/grupo/index')
       }
     }) 
   
@@ -135,7 +135,7 @@ export class GrupocreateComponent {
 
   succes(){
     Swal.fire  ({
-      title: "Horario creado con éxito!",
+      title: "Grupo creado con éxito!",
       icon: "success",
       
     });

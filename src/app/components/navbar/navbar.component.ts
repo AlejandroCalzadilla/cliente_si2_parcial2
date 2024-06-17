@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { LoginService } from '../../auth/login/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +12,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class NavbarComponent {
 
-
+  
   isDivVisible: boolean = false;
   isDivVisibleMovil: boolean = false;
-
+ 
+    constructor(private loginService:LoginService,private router:Router){}
+    
   toggleDivVisibility() {
     console.log('hola mundo')
     this.isDivVisible = !this.isDivVisible;
@@ -24,5 +27,19 @@ export class NavbarComponent {
     console.log('hola mundo movil')
     this.isDivVisibleMovil = !this.isDivVisibleMovil;
   }
+
+
+   cerrarsesioon(){
+
+     this.loginService.logout();
+
+     console.log('el token ', this.loginService.gettoken())
+     
+     this.router.navigateByUrl('')
+ 
+
+   }
+
+
 
 }

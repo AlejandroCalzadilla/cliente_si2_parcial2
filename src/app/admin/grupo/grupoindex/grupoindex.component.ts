@@ -49,7 +49,7 @@ export class GrupoindexComponent {
 
 
   confirmarEliminacion(id: any) {
-    const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar este Modulo?');
+    const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar este grupo?');
     if (confirmacion) {
       this.eliminarUsuario(id);
     }

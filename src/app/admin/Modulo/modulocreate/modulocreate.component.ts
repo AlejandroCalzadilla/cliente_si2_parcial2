@@ -61,7 +61,7 @@ export class ModulocreateComponent {
              this.modulos=userdata
           },
         }) 
-        this.router.navigateByUrl('/facultad/index')
+        this.router.navigateByUrl('/modulo/index')
       }
     }) 
   }

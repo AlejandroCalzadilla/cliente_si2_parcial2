@@ -73,16 +73,17 @@ export class AulaService {
 
 
 
-  edit(carrera: any,id:number,idfacu:number): Observable<Aula> {
+  edit(carrera: any,id:number,idaula:number): Observable<Aula> {
     console.log('llego el id por aca',id ,carrera)
-    const endpoint = `${this.apiUrl}/${id}`;
+    const endpoint = `${this.apiUrl}/${idaula}`;
     const token = this.loginservice.gettoken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const registero={
-      nombre:carrera.nombre,
-      codigo:Number(carrera.codigo),
-      facultad:{
-          id:idfacu
+      numero:Number(carrera.numero),
+      tipo:carrera.tipo,
+      capacidad:Number(carrera.capacidad),
+      modulo:{
+          id:id
       }
   
      } 

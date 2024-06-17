@@ -35,30 +35,19 @@ export class GrupoService {
 
 
 
-  findCarreraById(id: string): Observable<GrupoCreate> {
+  findCarreraById(id: string): Observable<GrupoGet> {
     const endpoint = `${this.apiUrl}/${id}`;
     const token = this.loginservice.gettoken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-    return this.http.get<GrupoCreate>(endpoint, { headers });
+    return this.http.get<GrupoGet>(endpoint, { headers });
   }
   
   
 
   Create(horario:any): Observable<GrupoCreate> {
     const Moduloid=localStorage.getItem('idmodulo')
-    // console.log(docentes,'aver ahora')
-     /* const registero={
-      numero:Number(aula.numero),
-      tipo:aula.tipo,
-      capacidad:Number(aula.capacidad),
-      modulo:{
-          id:id
-      }
-      
-     } */
-     //console.log(registero,'dajdhsajdsadjkasdj')
-   // console.log(carrera,'dasdnbsabdh')
+    
    console.log('llego al services dasdashdas') 
    const horariomap=this.transformToHorarioCreate(horario) 
     console.log(horariomap,'horario terminado')
@@ -71,20 +60,12 @@ export class GrupoService {
 
 
 
-  edit(carrera: any,id:number,idfacu:number): Observable<GrupoCreate> {
+  edit(carrera: any,id:number): Observable<GrupoCreate> {
     console.log('llego el id por aca',id ,carrera)
     const endpoint = `${this.apiUrl}/${id}`;
     const token = this.loginservice.gettoken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const registero={
-      nombre:carrera.nombre,
-      codigo:Number(carrera.codigo),
-      facultad:{
-          id:idfacu
-      }
-  
-     } 
-     
+    const registero=this.transformToHorarioCreate(carrera)
     return this.http.put<GrupoCreate>(endpoint, registero,{ headers });
   }
  

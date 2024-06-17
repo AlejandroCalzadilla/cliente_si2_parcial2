@@ -44,6 +44,12 @@ export class CarreracreateComponent {
     })
  
   }
+
+  menuOpen: boolean[] = [];
+
+  toggleMenu(index: number) {
+    this.menuOpen[index] = !this.menuOpen[index];  // Toggle state for specific index
+  }
    
    get nombre(){
     return this.CreateForm.controls.nombre
@@ -81,11 +87,7 @@ export class CarreracreateComponent {
   }
  }
     
- menuOpen: boolean[] = [];
 
- toggleMenu(index: number) {
-   this.menuOpen[index] = !this.menuOpen[index];  // Toggle state for specific index
- }
 
 
  

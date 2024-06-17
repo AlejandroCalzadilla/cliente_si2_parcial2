@@ -87,7 +87,7 @@ export class FacultadEditComponent {
              this.facultades=userdata
           },
         }) 
-        this.router.navigateByUrl('/docente/index')
+        this.router.navigateByUrl('/facultad/index')
       }
     }) 
   }
