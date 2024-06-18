@@ -31,6 +31,7 @@ import { GrupocreateComponent } from './admin/grupo/grupocreate/grupocreate.comp
 import { HorarioeditComponent } from './admin/horario/horarioedit/horarioedit.component';
 import { authGuard } from './guards/auth.guard';
 import { GrupoeditComponent } from './admin/grupo/grupoedit/grupoedit.component';
+import { AsistenciaindexComponent } from './admin/asistencia/asistenciaindex/asistenciaindex.component';
 
 export const routes: Routes = [
 
@@ -65,5 +66,7 @@ export const routes: Routes = [
     {path: 'grupo/create',component:GrupocreateComponent      ,canActivate:[authGuard]      },
     {path: 'grupo/edit/:id',component:GrupoeditComponent      ,canActivate:[authGuard]      },   
     {path: 'errorpage',component:ErrorpageComponent           ,canActivate:[authGuard]  },
+    {path: 'asistencia',component:AsistenciaindexComponent           ,canActivate:[authGuard]  },
+
 
 ];

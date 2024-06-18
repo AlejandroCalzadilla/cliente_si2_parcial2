@@ -22,7 +22,7 @@ import { GrupoGet } from '../../grupo/Model/grupoGet';
   //styleUrl: './horariocreate.component.css'
 })
 export class HorariocreateComponent {
-  dias: string[] = ["LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"]; 
+  dias: string[] = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado"]; 
   logierror:string=""
   aulas:AulaGet[]=[]
   grupos:GrupoGet[]=[]

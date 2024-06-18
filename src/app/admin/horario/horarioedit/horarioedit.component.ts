@@ -129,7 +129,7 @@ getHorario(): void {
     if (data.dia !== null) {
        console.log('esta devolviendo nel',data)
        const hi=this.removeSecondsFromTime(data.horaInicio)
-       const hf=this.removeSecondsFromTime(data.horaInicio)
+       const hf=this.removeSecondsFromTime(data.horaFin)
        
        this.CreateForm.setValue({
         dia:  data.dia ,
@@ -137,7 +137,7 @@ getHorario(): void {
         horaInicio: hi,
         aula:data.aula.id,
         grupo:data.grupo.id,
-        horaFin:hf
+        horaFin:hf,
       });
     } else {
       // Manejar el caso cuando data.nombre es null

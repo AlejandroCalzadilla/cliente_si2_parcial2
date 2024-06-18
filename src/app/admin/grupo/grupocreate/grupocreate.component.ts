@@ -36,7 +36,7 @@ export class GrupocreateComponent {
     nombre:['',[Validators.required,]],      
 
   })
-  modulos:GrupoGet[]=[] 
+  registros:GrupoGet[]=[] 
   constructor( private router: Router,private grupoService:GrupoService,private formbuilder:FormBuilder,private docenteService:DocenteService
   ,private materiaService:MateriaService,private carreraService:CarreraService
 
@@ -109,7 +109,7 @@ export class GrupocreateComponent {
       complete:()=>{
         this.grupoService.findAll().subscribe({
           next:(userdata)=>{ 
-             this.modulos=userdata
+             this.registros=userdata
           },
         }) 
         this.router.navigateByUrl('/grupo/index')

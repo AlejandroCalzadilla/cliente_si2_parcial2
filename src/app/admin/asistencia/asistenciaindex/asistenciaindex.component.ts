@@ -1,39 +1,34 @@
 import { Component } from '@angular/core';
-import { HorarioCreate } from '../Model/horarioCreate';
-import { HorarioService } from '../horario.service';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AsistenciaGet } from '../Model/asistenciaget';
+//import { HorarioService } from '../horario.service';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+//import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../components/navbar/navbar.component';
-import { HorarioGet } from '../Model/horarioGet';
+//import { HorarioGet } from '../Model/horarioGet';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'
 import autoTable from 'jspdf-autotable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import * as XLSX from 'xlsx';
-//import { saveAs } from 'file-saver';
-//import { saveAs } from 'file-saver';
-
-
-
-
-
+import { AsistenciaService } from '../asistencia.service';
 @Component({
-  selector: 'app-horarioindex',
+  selector: 'app-asistenciaindex',
   standalone: true,
   imports: [CommonModule,RouterLink,RouterOutlet,NavbarComponent,ReactiveFormsModule, NgxPaginationModule,FormsModule],
-  templateUrl: './horarioindex.component.html',
-  //styleUrl: './horarioindex.component.css'
+  templateUrl: './asistenciaindex.component.html',
+  styleUrl: './asistenciaindex.component.css'
 })
-export class HorarioindexComponent {
-  registros: HorarioGet[] = []
+export class AsistenciaindexComponent {
+  registros: AsistenciaGet[] = []
   menuOpen: boolean[] = [];
   filterOpen: boolean =false
   filters: { [key: string]: boolean } = {}
   selectedSort: string = ''
 
-  filtrados: HorarioGet[] = [];
+  filtrados: AsistenciaGet[] = [];
   criterioBusqueda: string = '';
   criterioBusqueda2: string = '';
   totalItems: number = 0;
@@ -43,8 +38,8 @@ export class HorarioindexComponent {
 
 
 
-  sortedHorarios: HorarioGet[] = [];
-  constructor(private horarioService: HorarioService, private router: Router) { }
+  sortedHorarios: AsistenciaGet[] = [];
+  constructor(private asistenciaService: AsistenciaService, private router: Router) { }
 
   
   
@@ -52,7 +47,7 @@ export class HorarioindexComponent {
 
   ngOnInit(): void {
 
-    this.horarioService.findAllC().subscribe({
+    this.asistenciaService.findAll().subscribe({
       next: (userdata) => {
         console.log(userdata, 'el docente')
         this.registros = userdata
@@ -107,20 +102,23 @@ export class HorarioindexComponent {
   
     if (criterio1 || criterio2) {
       this.filtrados = this.registros.filter(usuario => 
-        (usuario.dia.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||
-        usuario.aula.numero.toString().replace(/\s+/g, '').includes(criterio1) ||
+        (usuario.fecha.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||
+        usuario.hora.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||
+        usuario.estado.toString().replace(/\s+/g, '').includes(criterio1) || 
         usuario.grupo.materia.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||
         usuario.grupo.profesor.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||
         usuario.grupo.carrera.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||
-        usuario.horaInicio.replace(/\s+/g, '').includes(criterio1) ||
+        //usuario.horaInicio.replace(/\s+/g, '').includes(criterio1) ||
         usuario.grupo.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio1)) &&
   
-        (usuario.dia.replace(/\s+/g, '').toLowerCase().includes(criterio2) ||
-        usuario.aula.numero.toString().replace(/\s+/g, '').includes(criterio2) ||
+        (
+          usuario.fecha.replace(/\s+/g, '').toLowerCase().includes(criterio1) ||  
+        usuario.hora.replace(/\s+/g, '').toLowerCase().includes(criterio2) ||
+        usuario.estado.toString().replace(/\s+/g, '').includes(criterio2) ||
         usuario.grupo.materia.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio2) ||
         usuario.grupo.profesor.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio2) ||
         usuario.grupo.carrera.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio2) ||
-        usuario.horaInicio.replace(/\s+/g, '').includes(criterio2) ||
+        //usuario.horaInicio.replace(/\s+/g, '').includes(criterio2) ||
         usuario.grupo.nombre.replace(/\s+/g, '').toLowerCase().includes(criterio2))
       );
       this.totalItems = this.filtrados.length;
@@ -162,10 +160,10 @@ export class HorarioindexComponent {
 
   eliminarUsuario(id: string): void {
     console.log('este el id deberia llegar',id)
-    this.horarioService.delete(id).subscribe({
+    this.asistenciaService.delete(id).subscribe({
         next: () => {
           this.sucess()
-          this.horarioService.findAllC().subscribe({
+          this.asistenciaService.findAll().subscribe({
             next: (userdata) => {
               this.registros = userdata
               
@@ -206,20 +204,18 @@ export class HorarioindexComponent {
 
   generatePDF(): void {
     const doc = new jsPDF();
-    const col = ["Día", "Hora Inicio", "Hora Fin", "Aula", "Grupo","Materia","Carrera","Profesor"];
+    const col = ["fecha" ,"hora", "estado", "materia", "profesor", "carrera","grupo"];
     const rows: any[] = [];
 
     this.filtrados.forEach(record => {
       const temp = [
-        record.dia,
-        record.horaInicio,
-        record.horaFin,
-        record.aula.numero,
-        record.grupo.nombre,
+        record.fecha,
+        record.hora,
+        record.estado,
         record.grupo.materia.nombre,
         record.grupo.carrera.nombre,
         record.grupo.profesor.nombre,
-
+        record.grupo.nombre,
         
       ];
       rows.push(temp);
@@ -247,14 +243,14 @@ export class HorarioindexComponent {
 
   prepareData(): any[] {
     return this.filtrados.map(record => ({
-      'Día': record.dia,
-      'Hora Inicio': record.horaInicio,
-      'Hora Fin': record.horaFin,
-      'Aula': record.aula.numero,
-      'Grupo': record.grupo.nombre,
+      'fecha': record.fecha,
+      'hora': record.hora,
+      'estado': record.estado,
+      
       'Materia': record.grupo.materia.nombre,
       'Pofesor': record.grupo.profesor.nombre,
       'Carrera': record.grupo.carrera.nombre,
+      'Grupo': record.grupo.nombre, 
     }));
   }
 
@@ -296,5 +292,4 @@ export class HorarioindexComponent {
 
     });
   }
-
 }
