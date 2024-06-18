@@ -25,7 +25,7 @@ export class LoginService {
 
     Login(credentials:User):Observable<User>{
     
-    const endpoint="http://localhost:8080/login"
+    const endpoint="http://18.218.118.43/login"
     return this.http.post<User>(endpoint,credentials).pipe(
       tap((userData: User) => {  
         localStorage.setItem('token_key',userData.token!)
