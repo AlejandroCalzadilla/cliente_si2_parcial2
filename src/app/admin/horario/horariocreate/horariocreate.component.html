@@ -11,12 +11,12 @@
                     <label for="dia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DIA</label>
                     <select formControlName="dia" name="dias" id="dias" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                         <option class="hover:bg-black" value="" disabled selected>Seleccione el  día</option>
-                        <option value="Lunes">LUNES</option>
-                        <option value="MARTES">MARTES</option>
-                        <option value="MIERCOLES">MIERCOLES</option>
-                        <option value="JUEVES">JUEVES</option>
-                        <option value="VIERNES">VIERNES</option>
-                        <option value="SABADO">SABADO</option>
+                        <option value="lunes">lunes</option>
+                        <option value="martes">martes</option>
+                        <option value="miercoles">miercoles</option>
+                        <option value="jueves">jueves</option>
+                        <option value="viernes">viernes</option>
+                        <option value="sabado">sabado</option>
                         </select>
                      <div *ngIf="dia.invalid && (dia.dirty || dia.touched)" class="text-red-600">
                         <div *ngIf="dia.errors?.['required']">el campo dia es requerido</div>
